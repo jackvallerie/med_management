@@ -30,8 +30,8 @@ python server.py
 ```
 
 The server will run on http://localhost:5000 by default.  To see the Swagger 
-API interface, go to http://localhost:5000/api/ui and click 'medications' and
-'patients' to see the operations associated with each module.  You can
+API interface, go to http://localhost:5000/api/ui and click **medications** and
+**patients** to see the operations associated with each module.  You can
 interact with the API from this UI by filling in the parameter fields for
 requests that require it, then clicking the 'Try it out!' button at the
 bottom left of that operation box.
