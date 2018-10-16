@@ -5,27 +5,8 @@ This is the patients module
 from flask import make_response, abort
 import medications
 
-
 # create the patients list
-PATIENTS = {
-    "West": {
-        "fname": "Kanye",
-        "lname": "West",
-        "medications": [
-            "Divalproex",
-        ],
-    },
-    "Scrooge": {
-        "fname": "Ebenezer",
-        "lname": "Scrooge",
-        "medications": [
-            "Lisonopril",
-            "Metformin",
-        ],
-    },
-}
-
-#PATIENTS = {}
+PATIENTS = {}
 
 
 """
