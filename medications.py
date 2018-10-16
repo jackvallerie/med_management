@@ -5,7 +5,6 @@ This is the medications module
 from flask import make_response, abort
 import patients
 
-
 # create the medications list
 MEDICATIONS = []
 
@@ -22,7 +21,7 @@ def read_all():
 
 
 """
-This fucntion adds a new medication to the medications list
+This function adds a new medication to the medications list
 
 param medname: name of medication to add
 returns: 201 on success, 406 on medication exists
