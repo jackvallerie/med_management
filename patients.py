@@ -44,6 +44,15 @@ def create(patient):
         patient_already_exists_error(lname)
 
 
+"""
+This function assigns a medication from the available medications 
+list to a paitent.
+
+param lname: Last name of patient
+param medname: Name of medication to add
+returns: 201 on success, 406 on patient doesn't exist or medication
+doesn't exist
+"""
 def assign_medication(lname, medname):
     if patient_exists(lname):
         if medications.medication_exists(medname):
@@ -55,6 +64,14 @@ def assign_medication(lname, medname):
         patient_doesnt_exist_error(lname)
 
 
+"""
+This function unassogns a medication from a patient.
+
+param lname: Last name of patient
+param medname: Name of medication to remove
+returns: 201 on success, 406 on patient doesn't exist or patient
+doesn't use medication
+"""
 def delete_medication(lname, medname):
     
     if patient_exists(lname):

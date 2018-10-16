@@ -76,11 +76,7 @@ paths:
           description: Successfully created a person in the list
 
 
-  # read specific patients using the parameter serialization:
-  # style=form, explode=true
   /patients/{lname}:
-    #get:
-    #  operationId: patients.read_one
     put:
       operationId: patients.assign_medication
       tags:
