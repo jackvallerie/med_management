@@ -1,0 +1,170 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with server code
+  version: "1.0"
+  title: Medication Management API
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+
+paths:
+  /patients:
+    get:
+      operationId: patients.read_all
+      tags:
+        - patients
+      summary: Read the entire list of patients
+      description: Read the list of patients
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of patients to get from patients
+          required: False
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering patients
+          required: False
+      responses:
+        200:
+          description: Successfully read patient list operation
+          schema:
+            type: array
+            items:
+              properties:
+                fname:
+                  type: string
+                lname:
+                  type: string
+                medications:
+                  type: array
+                  items:
+                    type: string
+
+    post:
+      operationId: patients.create
+      tags:
+        - patients
+      summary: Create a patient and add it to the patient list
+      description: Create a new patient in the patient list
+      parameters:
+        - name: patient
+          in: body
+          description: Patient to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of patient to create
+              lname:
+                type: string
+                description: Last name of patient to create
+              medications:
+                type: array
+                description: List of medications assigned to the patient
+                items:
+                  type: string
+      responses:
+        201:
+          description: Successfully created a person in the list
+
+
+  # read specific patients using the parameter serialization:
+  # style=form, explode=true
+  /patients/{lname}:
+    #get:
+    #  operationId: patients.read_one
+    put:
+      operationId: patients.assign_medication
+      tags:
+        - patients
+      summary: Assign a medication from the medications list to a patient
+      description: Assign a medication to a patient
+      parameters:
+        - name: lname
+          in: path
+          description: Last name of patient to asssign medication to
+          type: string
+          required: True
+        - name: medname
+          in: body
+          description: name of medication
+          required: True
+          schema:
+            type: string
+      responses:
+        201:
+          description: Successfully assigned a new medication
+
+    delete:
+      operationId: patients.delete_medication
+      tags:
+        - patients
+      summary: Remove a medication from a patient's medications list
+      description: Remove a medication from a patient's medications list
+      parameters:
+        - name: lname
+          in: path
+          description: Last name of patient to remove medication from
+          type: string
+          required: True
+        - name: medname
+          in: body
+          description: Medication to remove from the patient's medication list
+          required: True
+          schema:
+            type: string
+      responses:
+        201:
+          description: Successfully removed medication from a patient's medication list
+
+  /medications:
+    get:
+      operationId: medications.read_all
+      tags:
+          - medications
+      summary: Read the entire list of medications
+      description: Read the list of medicatoins
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of medications to get from medications
+          required: False
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering medications
+          required: False
+      responses:
+        200:
+          description: Successfully read medication list operation
+          schema:
+            type: array
+            description: List of available medications
+            items:
+              type: string
+
+    post:
+      operationId: medications.create
+      tags:
+        - medications
+      summary: Create a medication and add it to the medication list
+      description: Create a new medication in the medication list
+      parameters:
+        - name: medname
+          in: body
+          description: Medication to create
+          required: True
+          schema:
+            type: string
+      responses:
+        201:
+          description: Successfully added new medication to the list
